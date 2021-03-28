@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeFragment"
+        android:orientation="vertical"
+        android:gravity="top|center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_quote"
+            android:contentDescription="logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Favorite Quotes"
+            android:textStyle="italic"
+            android:textSize="24sp"
+            android:textColor="#888888"/>
+
+        <TextView
+            android:id="@+id/textView_quote"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:text="We must return to nature and nature's god."
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_margin="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/button_new_quote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:src="@drawable/ic_new_quote" />
+
+            <ImageButton
+                android:id="@+id/button_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:src="@drawable/ic_favorite" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
