@@ -14,9 +14,9 @@ class HomeViewModel : ViewModel() {
 
     private val _quote = MutableLiveData<MyQuoteModel>().apply {
         value = MyQuoteModel(
-            "0EfNwqiOsZ",
             "We must return to nature and nature's god.",
-            "Luther Burbank")
+            "Luther Burbank",
+            "")
     }
     val quote: LiveData<MyQuoteModel> = _quote
 
