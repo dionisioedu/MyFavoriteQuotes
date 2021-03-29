@@ -1,12 +1,17 @@
 package com.example.myfavoritequotes.ui.home
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.example.myfavoritequotes.data.MyQuoteModel
+import com.example.myfavoritequotes.data.MyQuotesDatabase
 import com.example.myfavoritequotes.network.MyQuotesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -35,7 +40,11 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun favoriteQuote() {
-        Log.d("Teste", "favoriteQuote()")
+    fun favoriteQuote(context: Context) {
+        _quote.value?.let {
+            viewModelScope.launch(Dispatchers.IO) {
+                MyQuotesDatabase.getInstance(context).myQuotesDao.addFavorite(it)
+            }
+        }
     }
 }
