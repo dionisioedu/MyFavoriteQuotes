@@ -1,23 +1,32 @@
 package com.example.myfavoritequotes.ui.favorites
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myfavoritequotes.R
 import com.example.myfavoritequotes.data.MyQuoteModel
+import com.example.myfavoritequotes.data.MyQuotesDao
 import com.example.myfavoritequotes.databinding.FavoriteItemBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class FavoritesAdapter : ListAdapter<MyQuoteModel, FavoritesAdapter.ViewHolder>(QuotesComparator()) {
+class FavoritesAdapter(
+    val myQuotesDao: MyQuotesDao
+) : ListAdapter<MyQuoteModel, FavoritesAdapter.ViewHolder>(QuotesComparator()) {
 
     class ViewHolder private constructor(val binding: FavoriteItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(quote: MyQuoteModel) {
+        fun bind(quote: MyQuoteModel, myQuotesDao: MyQuotesDao) {
             binding.textViewItemQuote.text = quote.text
             binding.textViewItemAuthor.text = quote.author
+            binding.buttonRemoveItem.setOnClickListener {
+                Log.d("removeItem", "$quote")
+                GlobalScope.launch {
+                    myQuotesDao.delFavorite(quote)
+                }
+            }
         }
 
         companion object {
@@ -36,7 +45,7 @@ class FavoritesAdapter : ListAdapter<MyQuoteModel, FavoritesAdapter.ViewHolder>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val myQuote = getItem(position)
         myQuote?.let {
-            holder.bind(it)
+            holder.bind(it, myQuotesDao)
         }
     }
 
@@ -48,7 +57,5 @@ class FavoritesAdapter : ListAdapter<MyQuoteModel, FavoritesAdapter.ViewHolder>(
         override fun areContentsTheSame(oldItem: MyQuoteModel, newItem: MyQuoteModel): Boolean {
             return oldItem.text == newItem.text && oldItem.author == newItem.author
         }
-
     }
-
 }

@@ -30,7 +30,7 @@ class FavoritesFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_favorites, container, false)
 
-        val adapter = FavoritesAdapter()
+        val adapter = FavoritesAdapter(dataSource)
         val recyclerView = root.findViewById<RecyclerView>(R.id.listView_favorites)
         recyclerView?.let {
             it.adapter = adapter
