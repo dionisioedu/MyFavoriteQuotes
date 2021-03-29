@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView_quote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_quote" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_item_quote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A flower falls, even though we love it; and a weed grows, even though we do not love it." />
+
+            <TextView
+                android:id="@+id/textView_item_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dogen"
+                android:textColor="#888888"
+                android:textStyle="italic"
+                android:textAlignment="textEnd" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

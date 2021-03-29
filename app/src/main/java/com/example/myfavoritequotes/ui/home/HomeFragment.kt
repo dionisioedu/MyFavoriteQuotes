@@ -9,7 +9,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
 import com.example.myfavoritequotes.R
+import com.example.myfavoritequotes.data.MyQuotesDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
 
@@ -20,8 +26,8 @@ class HomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         val buttonNewQuote = root.findViewById<ImageButton>(R.id.button_new_quote)
@@ -34,7 +40,7 @@ class HomeFragment : Fragment() {
         val buttonFavorite = root.findViewById<ImageButton>(R.id.button_favorite)
         buttonFavorite?.let {
             it.setOnClickListener {
-                homeViewModel.favoriteQuote()
+                homeViewModel.favoriteQuote(requireContext().applicationContext)
             }
         }
 
