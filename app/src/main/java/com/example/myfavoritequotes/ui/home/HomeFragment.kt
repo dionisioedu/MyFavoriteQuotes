@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -41,6 +42,8 @@ class HomeFragment : Fragment() {
         buttonFavorite?.let {
             it.setOnClickListener {
                 homeViewModel.favoriteQuote(requireContext().applicationContext)
+
+                Toast.makeText(context, "New Favorite Added!", Toast.LENGTH_SHORT).show()
             }
         }
 
